@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp">
+
+    <TextView
+        android:id="@+id/trending_daily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="每日趋势"
+        android:includeFontPadding="false"
+        android:background="@drawable/selector_text_1885ff"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"/>
+
+    <TextView
+        android:id="@+id/trending_weekly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="本周趋势"
+        android:includeFontPadding="false"
+        android:background="@drawable/selector_text_1885ff"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/trending_monthly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:text="本月趋势"
+        android:includeFontPadding="false"
+        android:background="@drawable/selector_text_1885ff"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="30dp"/>
+
+
+</RelativeLayout>

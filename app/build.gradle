@@ -1,0 +1,96 @@
+ext.mainApp = true
+apply from: rootProject.file('cc-settings-2.gradle')
+apply plugin: 'com.android.application'
+apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+def buildTime = new Date().format("yyyy-MM-dd HH:mm:ss")
+
+android {
+    compileSdkVersion rootProject.android.compileSdkVersion
+    buildToolsVersion rootProject.android.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.zhlw.zhlwcomponentdemo"
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
+        versionCode rootProject.android.versionCode
+        versionName rootProject.android.versionName
+
+        buildConfigField "String", "BUILD_TIME", "\"${buildTime}\""
+
+
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            //example "ComponentDemo_V1.0.0.0_debug.apk"
+            outputFileName = "ComponentDemo_V" + variant.versionName + "_" + variant.signingConfig.name + ".apk"
+        }
+    }
+
+    signingConfigs {
+        debug {
+            v2SigningEnabled true
+            v1SigningEnabled true
+        }
+
+        release {
+            v2SigningEnabled true
+            v1SigningEnabled true
+        }
+
+    }
+
+    buildTypes {
+
+        debug {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.debug
+        }
+
+        release {
+            // zipAlign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources false
+            //混淆配置
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation project(path: ':module_common')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    //添加组件
+    addComponent 'component_explore'
+    addComponent 'component_mine'
+    addComponent 'component_login'
+
+    //Dagger2-hilt
+    implementation rootProject.ext.dependencies["hilt"]
+    kapt rootProject.ext.dependencies["hilt-compiler"]
+
+}

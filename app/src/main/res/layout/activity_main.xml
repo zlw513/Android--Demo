@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ll_contain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/contain_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/navigation_tablayout"/>
+
+        <com.flyco.tablayout.CommonTabLayout
+            android:id="@+id/navigation_tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tl_iconGravity="TOP"
+            app:tl_iconMargin="5dp"
+            app:tl_iconVisible="true"
+            app:tl_iconHeight="24dp"
+            app:tl_iconWidth="24dp"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            app:tl_indicator_margin_top="4dp"
+            app:tl_indicator_width="0px"
+            app:tl_textSelectColor="@color/color_FF1885FD"
+            app:tl_textUnselectColor="@color/color_B3000000"
+            app:tl_textsize="16sp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

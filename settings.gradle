@@ -1,0 +1,8 @@
+rootProject.name = "ZhlwComponentDemo"
+include ':app'
+include ':module_base'
+include ':module_common'
+include ':component_explore'
+include ':component_mine'
+include ':component_login'
+include ':lib_data'
