@@ -23,6 +23,7 @@ object RouteConstant {
 
     const val LOGIN_COMPONENT = "component_login"
     const val ACTION_TO_LOGIN_ACTIVITY = "action_login_activity"
+    const val PARAM_LOGIN_ACTIVITY = "param_login_callId"
 
 
 }

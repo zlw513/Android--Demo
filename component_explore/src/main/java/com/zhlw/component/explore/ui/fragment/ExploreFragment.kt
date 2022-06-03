@@ -39,7 +39,7 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding,ExploreFragmentViewM
         if (TextUtils.isEmpty(viewModel.getUserName())){
             binding.llTips.visibility = View.VISIBLE
             binding.llTips.setOnClickListener {
-                CCUtils.startLoginActivity(requireContext())
+                viewModel.startLogin()
             }
         } else {
 
@@ -123,6 +123,7 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding,ExploreFragmentViewM
             binding.rvExplore.visibility = View.GONE
             binding.headerTrending.visibility = View.GONE
             mErrorView?.visibility = View.GONE
+            binding.llTips.visibility = View.GONE
             binding.exploreLoadingView.visibility = View.VISIBLE
         } else {
             binding.exploreLoadingView.visibility = View.GONE

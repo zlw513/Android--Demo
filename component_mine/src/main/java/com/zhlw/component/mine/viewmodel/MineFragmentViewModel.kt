@@ -9,9 +9,8 @@ import com.zhlw.lib.data.mine.PublicUserInfo
 import com.zhlw.lib.data.repository.RepositoryInfo
 import com.zhlw.module.base.ui.viewmodel.BaseViewModel
 import com.zhlw.module.base.ui.viewmodel.UIState
-import com.zhlw.module.base.utils.PreferencesUtils
 import com.zhlw.module.base.utils.SingleLiveEvent
-import com.zhlw.module.common.constant.STORE_USERID_KEY
+import com.zhlw.module.common.utils.CCUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -47,6 +46,7 @@ class MineFragmentViewModel @Inject constructor(
             uiState = UIState(isShowLoadingView = true,isShowErrorView = true),
             block = {
                 val username = mineRepository.getUserName()
+                Log.i(TAG,"fetchData-username is $username")
                 if (TextUtils.isEmpty(username)) {
                     throw NullPointerException("用户未登录")
                 } else {
@@ -83,6 +83,17 @@ class MineFragmentViewModel @Inject constructor(
 
     fun setContainVisibility(visible : Int){
         mUIContainVisibility.value = visible
+    }
+
+    fun startLogin(){
+        CCUtils.startLoginActivityForResult().callAsyncCallbackOnMainThread { cc, result ->
+            if (result.isSuccess){
+                Log.i(TAG,"登录成功")
+                fetchData()
+            } else {
+                Log.e(TAG,"登录失败")
+            }
+        }
     }
 
     private fun storeUserId(id : Long){

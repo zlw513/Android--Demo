@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/github_workspace/Android--Demo/Android--Demo/component_mine/src/main/res/layout/fragment_mine.xml" value="0.3619791666666667" />
+        <entry key="..\:/github_workspace/Android--Demo/Android--Demo/component_mine/src/main/res/layout/item_mine_repository.xml" value="0.3619791666666667" />
         <entry key="..\:/github_workspace/ComponentDemo/Android--Demo/component_explore/src/main/res/layout/item_explore.xml" value="0.25" />
         <entry key="..\:/github_workspace/ComponentDemo/Android--Demo/component_explore/src/main/res/layout/item_tag.xml" value="0.75" />
         <entry key="..\:/github_workspace/ComponentDemo/Android--Demo/component_explore/src/main/res/layout/item_trending.xml" value="0.5859085290482077" />

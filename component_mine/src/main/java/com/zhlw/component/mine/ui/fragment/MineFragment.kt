@@ -40,7 +40,7 @@ class MineFragment : BaseFragment<FragmentMineBinding,MineFragmentViewModel>() {
             Log.i(transactionTag,"MineFragment init start")
 
             binding.mineUnlogin.setOnClickListener {
-                CCUtils.startLoginActivity(requireContext())
+                viewModel.startLogin()
             }
 
             val layoutManager = LinearLayoutManager(requireContext(),RecyclerView.VERTICAL,false)
@@ -102,6 +102,7 @@ class MineFragment : BaseFragment<FragmentMineBinding,MineFragmentViewModel>() {
         if (state){
             binding.rvMine.visibility = View.GONE
             mErrorView?.visibility = View.GONE
+            binding.mineUnlogin.visibility = View.GONE
             binding.mineLoading.visibility = View.VISIBLE
         } else {
             binding.mineLoading.visibility = View.GONE

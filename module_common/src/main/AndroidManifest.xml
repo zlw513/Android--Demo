@@ -5,4 +5,12 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!--  解决组件间无法互相调用，把组件包名添加到此，否则无法跨app调用组件  -->
+    <queries>
+        <package android:name="com.zhlw.component.mine" />
+        <package android:name="com.zhlw.component.login" />
+        <package android:name="com.zhlw.component.expore" />
+        <package android:name="com.zhlw.zhlwcomponentdemo" />
+    </queries>
+
 </manifest>

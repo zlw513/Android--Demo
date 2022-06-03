@@ -60,7 +60,7 @@ ext {
             "rxjava-life"              : 'com.ljx.rxlife2:rxlife-rxjava:2.0.0',
             "rvAdapterHelper"          : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7',
             "svga-player"              : 'com.github.yyued:SVGAPlayer-Android:2.5.13',
-            "mmkv"                     : 'com.tencent:mmkv:1.0.23',
+            "mmkv"                     : 'com.tencent:mmkv:1.2.13',
             "hilt"                     : "com.google.dagger:hilt-android:$hiltVersion",
             "hilt-compiler"            : "com.google.dagger:hilt-android-compiler:$hiltVersion",
             "okhttp3-interceptor"      : 'com.squareup.okhttp3:logging-interceptor:4.7.2',

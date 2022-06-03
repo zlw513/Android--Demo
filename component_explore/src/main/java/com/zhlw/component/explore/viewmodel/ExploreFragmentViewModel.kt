@@ -15,6 +15,7 @@ import com.zhlw.module.base.ui.viewmodel.BaseViewModel
 import com.zhlw.module.base.utils.SingleLiveEvent
 import com.zhlw.module.common.constant.RouteConstant.KEY_EXPLORE_DATA
 import com.zhlw.module.common.constant.RouteConstant.KEY_TRENDING_DATA
+import com.zhlw.module.common.utils.CCUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -107,6 +108,16 @@ class ExploreFragmentViewModel @Inject constructor(val repository : ExploreRepos
     fun setDataRange(dateRange : String){
         mDataRange = dateRange
         fetchTrendingData()
+    }
+
+    fun startLogin(){
+        CCUtils.startLoginActivityForResult().callAsyncCallbackOnMainThread { cc, result ->
+            if (result.isSuccess){
+                fetchData(mFetchType)
+            } else {
+                Log.e(TAG,"登录失败")
+            }
+        }
     }
 
 }

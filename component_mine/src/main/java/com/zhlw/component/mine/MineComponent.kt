@@ -20,6 +20,8 @@ import kotlinx.coroutines.launch
  */
 class MineComponent : IComponent{
 
+    private val TAG = "MineComponent"
+
     private val mScope : CoroutineScope = CoroutineScope(Dispatchers.IO)
 
     override fun getName() = RouteConstant.MINE_COMPONENT
@@ -45,8 +47,13 @@ class MineComponent : IComponent{
     private fun login(cc: CC) : Boolean{
         val mineLocalDataSource = EntryPointAccessors.fromApplication(cc.context, MineProvider::class.java).getMineLocalDataSource()
         val userName = cc.params[RouteConstant.KEY_USERNAME] as String
-        mineLocalDataSource.storeUserName(userName)
-        CC.sendCCResult(cc.callId, CCResult.successWithNoKey(CODE_SUCCESS))
+        Log.i(TAG,"login-userName is $userName")
+        val isSuccess = mineLocalDataSource.storeUserName(userName)
+        if (isSuccess){
+            CC.sendCCResult(cc.callId, CCResult.successWithNoKey(CODE_SUCCESS))
+        } else {
+            CC.sendCCResult(cc.callId, CCResult.error("用户信息保存失败"))
+        }
         return true
     }
 

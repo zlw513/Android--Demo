@@ -19,7 +19,9 @@ class LoginComponent : IComponent {
             RouteConstant.ACTION_TO_LOGIN_ACTIVITY -> {
                 val activityIntent = Intent(cc.context, LoginActivity::class.java)
                 activityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                activityIntent.putExtra(RouteConstant.PARAM_LOGIN_ACTIVITY,cc.callId)
                 cc.context.startActivity(activityIntent)
+                return true
             }
             else -> CC.sendCCResult(cc?.callId, CCResult.errorUnsupportedActionName())
         }

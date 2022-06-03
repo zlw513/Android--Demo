@@ -10,17 +10,16 @@ import com.zhlw.module.common.constant.START_MAIN_ACTIVITY
 
 object CCUtils {
 
-    fun startLoginActivity(context: Context){
+    /**
+     * param : callId
+     */
+    fun startLoginActivityForResult() =
         CC.obtainBuilder(RouteConstant.LOGIN_COMPONENT)
-            .setContext(context)
             .setActionName(RouteConstant.ACTION_TO_LOGIN_ACTIVITY)
             .build()
-            .call()
-    }
 
-    fun loginCC(context: Context,userName : String) : CC {
+    fun loginCC(userName : String) : CC {
         return CC.obtainBuilder(RouteConstant.MINE_COMPONENT)
-            .setContext(context)
             .setActionName(RouteConstant.ACTION_LOGIN)
             .addParam(RouteConstant.KEY_USERNAME,userName)
             .build()

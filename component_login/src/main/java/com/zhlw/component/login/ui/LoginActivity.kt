@@ -7,16 +7,23 @@ import com.zhlw.component.login.viewmodel.LoginActivityViewModel
 import com.zhlw.module.base.data.ResponseThrowable
 import com.zhlw.module.base.ui.activity.BaseActivity
 import com.zhlw.module.base.utils.viewModels
-import com.zhlw.module.common.utils.CCUtils
+import com.zhlw.module.common.constant.RouteConstant
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 
+@AndroidEntryPoint
 class LoginActivity : BaseActivity<ActivityLoginBinding,LoginActivityViewModel>() {
+
+    private var callId : String = ""
+
+    private var isLoginSuccess = false
 
     override val layoutRes : Int = R.layout.activity_login
 
     override val viewModel : LoginActivityViewModel by viewModels()
 
     override fun initEvent() {
+        callId = intent.getStringExtra(RouteConstant.PARAM_LOGIN_ACTIVITY) ?: ""
         binding.loginBtn.setOnClickListener {
             val userName = binding.edUsername.text
             viewModel.login(this,userName)
@@ -27,9 +34,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding,LoginActivityViewModel>(
         viewModel.loginEvent.observe(this){
             if (it == viewModel.loadSuccessCode){
                 binding.loginBtn.loadingSuccessful()
+                isLoginSuccess = true
                 lifecycleScope.launchWhenResumed {
                     delay(640)
-                    CCUtils.startMainActivity(this@LoginActivity)
+                    finishAndRemoveTask()
                 }
             } else if (it == viewModel.loadStartCode){
                 binding.loginBtn.startLoading()
@@ -45,6 +53,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding,LoginActivityViewModel>(
 
     override fun showLoadingImpl(state: Boolean) {
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.sendLoginResult(callId,isLoginSuccess)
     }
 
 }

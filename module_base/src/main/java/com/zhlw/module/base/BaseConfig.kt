@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import android.util.Log
+import com.billy.cc.core.component.CC
 import com.tencent.mmkv.MMKV
 
 /**
@@ -13,7 +14,7 @@ class BaseConfig {
 
     private val TAG = "BaseConfig"
 
-    //private val isDebugMode = BuildConfig.DEBUG
+    private val isDebugMode = BuildConfig.DEBUG
 
     private var mAppContext : Context? = null
 
@@ -27,6 +28,8 @@ class BaseConfig {
     private fun initConfig(application: Application?) {
         if (application != null){
             MMKV.initialize(application)
+            CC.enableVerboseLog(isDebugMode)
+            CC.enableRemoteCC(isDebugMode)
         } else {
             Log.e(TAG,"BaseConfig 初始化异常 application is $application")
         }

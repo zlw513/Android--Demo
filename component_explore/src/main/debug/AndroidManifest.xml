@@ -4,7 +4,11 @@
 
     <application
         android:name="com.zhlw.debug.DebugApplication"
-        android:label="@string/app_name">
+        android:label="@string/app_name"
+        android:theme="@style/style_activity"
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true"
+        android:extractNativeLibs="true">
 
         <activity android:name="com.zhlw.debug.DebugActivity">
             <intent-filter>

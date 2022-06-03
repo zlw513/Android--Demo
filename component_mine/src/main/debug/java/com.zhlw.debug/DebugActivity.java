@@ -1,24 +1,36 @@
-
-
-
 package com.zhlw.debug;
 
-import android.app.Activity;
+import static com.zhlw.module.common.constant.MConfigKt.STORE_USERNAME_KEY;
+
 import android.os.Bundle;
-import android.widget.TextView;
+
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.zhlw.component.mine.R;
+import com.zhlw.component.mine.ui.fragment.MineFragment;
+import com.zhlw.module.common.utils.CCUtils;
+import com.zhlw.module.common.utils.PreferencesUtils;
 
+import dagger.hilt.android.AndroidEntryPoint;
 
-public class DebugActivity extends Activity {
+@AndroidEntryPoint
+public class DebugActivity extends AppCompatActivity {
+
+    /**
+     * 组件单独运行时，在其他组件中用MMKV存储的username信息，在这个组件还是读不到，因此此处在开发时，写死一个username。
+     */
+    private String loginUserName = "zlw513";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_debug);
 
-        TextView version = (TextView) findViewById(R.id.idVersionTv);
+        PreferencesUtils.INSTANCE.put(STORE_USERNAME_KEY, loginUserName);
+
+        MineFragment mineFragment = (MineFragment) CCUtils.INSTANCE.getMineFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fl_content,mineFragment).commitNow();
 
     }
 }

@@ -13,7 +13,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
@@ -21,11 +20,11 @@ class ApplicationModule {
 
     @Provides
     fun provideMMKV(@ApplicationContext context: Context) : MMKV =
-        MMKV.mmkvWithID(
-            MMKV_ID,
+        MMKV.defaultMMKV(
             MMKV.SINGLE_PROCESS_MODE,
             MMKV_CRYPT_KEY
         )
+
 
     @Provides
     fun provideOkHttpClient(@ApplicationContext context: Context): OkHttpClient =

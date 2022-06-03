@@ -1,6 +1,6 @@
 package com.zhlw.component.explore.repository
 
-import com.zhlw.module.base.utils.PreferencesUtils
+import com.zhlw.module.common.utils.PreferencesUtils
 import com.zhlw.module.common.constant.STORE_USERNAME_KEY
 import javax.inject.Inject
 
